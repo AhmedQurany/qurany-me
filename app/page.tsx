@@ -1,31 +1,36 @@
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
-import { Preloader } from "@/components/Preloader";
-import { Hero } from "@/components/sections/Hero";
-import { ServicesSection } from "@/components/sections/ServicesSection";
-import { Problem } from "@/components/sections/Problem";
-import { Method } from "@/components/sections/Method";
-import { CinematicWork } from "@/components/sections/CinematicWork";
-import { Numbers } from "@/components/sections/Numbers";
-import { ManifestoTeaser } from "@/components/sections/ManifestoTeaser";
-import { CtaSection } from "@/components/sections/CtaSection";
+import {
+  Clients,
+  Edge,
+  Experience,
+  FinalCta,
+  Hero,
+  Problem,
+  Process,
+  Udl,
+  Work,
+} from "@/components/sections";
+import { SiteFooter, SiteHeader } from "@/components/ui";
 
-export default function HomePage() {
+// Section order follows the trust sequence: see → believe → be impressed → act.
+export default function Home() {
   return (
     <>
-      <Preloader />
-      <Nav />
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:p-3 focus:text-paper">
+        Skip to content
+      </a>
+      <SiteHeader />
       <main id="main">
         <Hero />
-        <ServicesSection />
         <Problem />
-        <Method />
-        <Numbers />
-        <CinematicWork />
-        <ManifestoTeaser />
-        <CtaSection />
+        <Process />
+        <Edge />
+        <Experience />
+        <Work />
+        <Udl />
+        <Clients />
+        <FinalCta />
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }
