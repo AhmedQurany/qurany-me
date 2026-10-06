@@ -8,7 +8,6 @@ import {
   socials,
   ventures,
 } from "@/content/profile";
-import { Mark } from "@/components/ui";
 import { PrintButton } from "./PrintButton";
 
 export const metadata: Metadata = {
@@ -23,21 +22,21 @@ export default function CvPage() {
   return (
     <main className="mx-auto max-w-[860px] px-5 py-10 md:py-16 print:max-w-none print:p-0">
       <div className="mb-10 flex items-center justify-between print:hidden">
-        <a href="/" className="label hover:text-clay">
+        <a href="/" className="text-base text-grey-600 hover:text-red">
           ← qurany.me
         </a>
         <PrintButton />
       </div>
 
-      <article className="border border-line bg-sheet p-8 md:p-12 print:border-0 print:p-0">
-        <header className="grid gap-6 border-b-2 border-ink pb-8 sm:grid-cols-[1fr_auto]">
+      <article className="border border-grey-200 bg-white p-8 md:p-12 print:border-0 print:p-0">
+        <header className="grid gap-6 border-b-2 border-maroon pb-8 sm:grid-cols-[1fr_auto]">
           <div>
-            <h1 className="text-[44px] font-semibold leading-none tracking-[-0.04em]">
+            <h1 className="text-[44px] font-medium leading-none tracking-[-0.02em]">
               Ahmed Qurany
             </h1>
-            <p className="mt-3 text-lg font-medium text-clay">Creative Experience Architect</p>
+            <p className="mt-3 text-lg font-medium text-red">Creative Experience Architect</p>
           </div>
-          <div className="space-y-1 text-sm text-muted sm:text-right">
+          <div className="space-y-1 text-sm text-grey-600 sm:text-right">
             <p>{contact.location}</p>
             <p>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
@@ -55,15 +54,15 @@ export default function CvPage() {
           <ol className="space-y-7">
             {experience.map((r) => (
               <li key={r.company} className="grid gap-2 break-inside-avoid sm:grid-cols-[150px_1fr] sm:gap-6">
-                <p className="font-mono text-xs uppercase tracking-wider text-muted">
+                <p className="text-sm tabular-nums text-grey-500">
                   {r.start} —<br className="hidden sm:inline" /> {r.end}
                 </p>
                 <div>
-                  <p className="font-semibold">
-                    {r.role} <span className="font-normal text-muted">· {r.company}</span>
+                  <p className="font-medium">
+                    {r.role} <span className="font-normal text-grey-600">· {r.company}</span>
                   </p>
-                  <p className="text-sm text-muted">{r.context}</p>
-                  <ul className="mt-2 list-disc space-y-1 pl-4 text-sm marker:text-clay">
+                  <p className="text-sm text-grey-600">{r.context}</p>
+                  <ul className="mt-2 list-disc space-y-1 pl-4 text-sm marker:text-red">
                     {r.points.map((p) => (
                       <li key={p}>
                         {p}
@@ -79,19 +78,10 @@ export default function CvPage() {
 
         <CvSection title="Ventures">
           <ul className="space-y-4">
-            <li className="break-inside-avoid">
-              <p className="font-semibold">
-                Ultimate Designers Lab (UDL) <span className="font-normal text-muted">· Founder</span>
-              </p>
-              <p className="text-sm">
-                A community for designers who refuse to be replaced by AI. Built the full platform —
-                25 spaces, 800+ curated resources — the sales motion, and the content engine.
-              </p>
-            </li>
             {ventures.map((v) => (
               <li key={v.name} className="break-inside-avoid">
-                <p className="font-semibold">
-                  {v.name} <span className="font-normal text-muted">· {v.role}</span>
+                <p className="font-medium">
+                  {v.name} <span className="font-normal text-grey-600">· {v.role}</span>
                 </p>
                 <p className="text-sm">{v.body}</p>
               </li>
@@ -105,8 +95,8 @@ export default function CvPage() {
           </CvSection>
           <div>
             <CvSection title="Education">
-              <p className="font-semibold">{education.school}</p>
-              <p className="text-sm text-muted">{education.degree}</p>
+              <p className="font-medium">{education.school}</p>
+              <p className="text-sm text-grey-600">{education.degree}</p>
             </CvSection>
             <CvSection title="Languages">
               <ul className="text-sm">
@@ -120,9 +110,9 @@ export default function CvPage() {
           </div>
         </div>
 
-        <footer className="mt-12 flex items-center justify-between border-t border-line pt-4">
-          <Mark className="text-xl" />
-          <span className="label">Strategy · Interface · Build</span>
+        <footer className="mt-12 flex items-center justify-between border-t border-grey-200 pt-4">
+          <span className="text-xl font-medium">Qurany</span>
+          <span className="text-sm text-grey-500">Strategy · Interface · Build</span>
         </footer>
       </article>
     </main>
@@ -132,7 +122,7 @@ export default function CvPage() {
 function CvSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-10">
-      <h2 className="label mb-4 border-b border-line pb-2 !text-clay">{title}</h2>
+      <h2 className="mb-4 border-b border-grey-200 pb-2 text-sm uppercase tracking-[0.14em] text-red">{title}</h2>
       {children}
     </section>
   );

@@ -1,12 +1,12 @@
-// Single source of truth for everything the site says about Ahmed.
-// Copy follows the "Qurany Branding" positioning: client-first, systems
-// thinking, no "all / everything / ultimate". Edit here, not in components.
+// Single source of truth for everything the site says. Copy follows the
+// "Qurany Glass website" Figma file; experience comes from the LinkedIn rewrite.
 
 export const contact = {
   // Primary CTA target. Swap for a WhatsApp / booking link once decided.
   cta: "mailto:hello@qurany.me?subject=Project%20enquiry",
   email: "hello@qurany.me",
   location: "Cairo, Egypt",
+  timeZone: "Africa/Cairo",
 };
 
 export const socials = [
@@ -16,64 +16,113 @@ export const socials = [
   { label: "UDL", href: "https://udl.qurany.me" },
 ];
 
-export const hero = {
-  eyebrow: "Creative Experience Architect — Cairo",
-  headline: "One designer who sees the whole system —",
-  headlineAccent: "strategy, interface, and build.",
-  body: "So you're not stitching together three freelancers and hoping the pieces fit.",
-  now: "Now leading digital experience at IT‑RANKS. Building UDL and WorkWiz on the side.",
-};
-
-export const stats = [
-  { value: "11+", label: "Years at the seam of strategy, design and code" },
-  { value: "500+", label: "Projects shipped across brand, product and web" },
-  { value: "3", label: "Products founded and built" },
+export const menu = [
+  { href: "#work", label: "Work" },
+  { href: "#process", label: "Process" },
+  { href: "#experience", label: "Experience" },
+  { href: "/cv", label: "CV" },
+  { href: "https://udl.qurany.me", label: "UDL" },
 ];
 
+export const hero = {
+  headline: "One designer who sees the whole system: strategy, interface, and build.",
+  body: "So you're not stitching together three freelancers and hoping the pieces fit.",
+};
+
 export const problem = {
+  label: "The problem",
   headline: "You don't need more designers. You need fewer moving parts.",
-  body: [
-    "Most projects break in the gaps — the brand says one thing, the interface says another, and the developer builds a third. Every handoff is a place for the vision to leak.",
-    "I close those gaps by owning the whole line: strategy, design, and build stay one decision.",
-  ],
+  body: "Most projects break in the gaps — the brand says one thing, the interface says another, and the developer builds a third. Every handoff is a place for the vision to leak.",
+  close: "I close those gaps by owning the whole line: strategy, design, and build stay one decision.",
 };
 
 export const process = {
+  label: "The process",
   headline: "One connected process, one person accountable.",
   steps: [
     {
       name: "Frame",
-      title: "Brand strategy",
-      body: "The logic and positioning everything else rests on. Decided once, so it doesn't get re-argued at every screen.",
+      body: "Define the real problem, the audience, and what success looks like before any pixels.",
+      video: "/videos/liquid-1.mp4",
     },
     {
       name: "Connect",
-      title: "Interface & product design",
-      body: "Decisions carry straight from strategy into the screen — through tokens, components and flows, not a PDF nobody opens.",
+      body: "Tie strategy, design, and build into one system where every part agrees with the next.",
+      video: "/videos/liquid-2.mp4",
     },
     {
       name: "Ship",
-      title: "Working build",
-      body: "Designed to actually ship, not just look good in a mockup. Front-end I can build myself, or hand to engineers who can build on it directly.",
+      body: "Deliver work that's built to run. Not a mockup, but something ready to go live.",
+      video: "/videos/liquid-3.mp4",
     },
   ],
 };
 
 export const edge = {
+  label: "The edge",
   headline: "Why one person, not three.",
-  body: "11+ years working the seam between strategy, design, and code — the space most people avoid because it needs all three at once. That's where I work best, and it's why the pieces come out connected instead of stitched.",
-  kicker: "You're paying for the size of the problem I take off your plate.",
+  body: "11+ years working the seam between strategy, design, and code, the space most people avoid because it needs all three at once. That's exactly where I work best, and it's why the pieces come out connected instead of stitched.",
+  kicker: ["You're not paying for hours. You're paying for the ", "size of the problem", " I take off your plate."],
   problems: [
     "Brand says one thing",
     "Interface says another",
-    "Developer builds a third",
-    "Intent lost in handoff",
-    "Buttons rebuilt every sprint",
-    "Deck doesn't match the product",
+    "Dev builds a third",
+    "Lost in handoff",
     "No design system",
-    "Site never shipped",
+    "Deck ≠ product",
+    "Buttons rebuilt",
+    "Never shipped",
+    "Three freelancers",
   ],
 };
+
+export interface Project {
+  name: string;
+  summary: string;
+  image: string;
+  hover: string;
+}
+
+export const work = {
+  label: "Selected work",
+  headline: "Problems, solved.",
+  projects: [
+    { name: "LEARN", summary: "Event website · Riyadh", image: "/images/work/learn.jpg", hover: "/images/work/learn-hover.jpg" },
+    { name: "LSI", summary: "Security integrator website", image: "/images/work/lsi.jpg", hover: "/images/work/lsi-hover.jpg" },
+    { name: "Moveris", summary: "Biometrics ad-tech platform", image: "/images/work/moveris.jpg", hover: "/images/work/moveris-hover.jpg" },
+    { name: "Optimal", summary: "Health lab storefront", image: "/images/work/optimal.jpg", hover: "/images/work/optimal-hover.jpg" },
+    { name: "PacTrack", summary: "Logistics platform", image: "/images/work/pactrack.jpg", hover: "/images/work/pactrack-hover.jpg" },
+  ] satisfies Project[],
+};
+
+export const udl = {
+  label: "Beyond the work",
+  headline: "Not just how I work. How I think.",
+  body: [
+    "The systems thinking behind my work isn't a trick — it's a discipline I've spent years refining. So much that I built UDL, a community where designers learn to think in systems and stay ahead of AI, instead of being replaced by it.",
+    "When you work with me, you're not getting someone who just does the work. You're getting someone who's studied why it works deeply enough to teach it.",
+  ],
+  cta: "Learn about UDL",
+  href: "https://udl.qurany.me",
+};
+
+// Logo files go in public/logos/<slug>.png (or .svg). Until a file exists the
+// client's name is shown as text.
+export const clients = [
+  { slug: "add", name: "add" },
+  { slug: "sabic", name: "SABIC" },
+  { slug: "binzagr", name: "Binzagr" },
+  { slug: "gaca", name: "GACA" },
+  { slug: "neom", name: "NEOM" },
+  { slug: "matarat", name: "Matarat" },
+  { slug: "visit-saudi", name: "Visit Saudi" },
+  { slug: "sajilni", name: "Sajilni" },
+  { slug: "galaxy-racer", name: "Galaxy Racer" },
+  { slug: "white-stone", name: "White Stone" },
+  { slug: "kaust", name: "KAUST" },
+  { slug: "it-ranks", name: "IT-RANKS" },
+  { slug: "bexel", name: "Bexel" },
+];
 
 export interface Role {
   company: string;
@@ -145,6 +194,24 @@ export const experience: Role[] = [
   },
 ];
 
+export const ventures = [
+  {
+    name: "Ultimate Designers Lab (UDL)",
+    role: "Founder",
+    body: "A community for designers who refuse to be replaced by AI. Built the full platform — 25 spaces, 800+ curated resources — the sales motion, and the content engine.",
+  },
+  {
+    name: "WorkWiz",
+    role: "Founder / Builder",
+    body: "Agency and client-management SaaS — CRM, projects, proposals, and billing. Built full-stack, with Stripe billing and a multi-tenant architecture.",
+  },
+  {
+    name: "Eventafy",
+    role: "Co-founder",
+    body: "Event-management platform, built with a technical co-founder.",
+  },
+];
+
 export const education = {
   school: "New Cairo Academy",
   degree: "Graphic Design — Faculty of Applied Arts",
@@ -167,78 +234,6 @@ export const skills = [
 export const languages = [
   { name: "Arabic", level: "Native" },
   { name: "English", level: "Professional working" },
-];
-
-export interface Project {
-  client: string;
-  problem: string;
-  answer: string;
-  tags: string[];
-}
-
-// Written as problems solved, not tasks done.
-export const projects: Project[] = [
-  {
-    client: "IT-RANKS",
-    problem: "An enterprise ERP and cloud suite where every product spoke a slightly different visual language.",
-    answer: "One design system underneath all of it: a 20-file DMP HTML suite, a shared icon library, and tokens engineering builds on directly.",
-    tags: ["Design system", "Product", "Front-end"],
-  },
-  {
-    client: "Sajilni",
-    problem: "An event-ticketing platform whose business goals had to become shipped product — without losing the founders along the way.",
-    answer: "Two years leading the product design team end to end, and carrying every design decision back to founders and stakeholders.",
-    tags: ["Product leadership", "UX/UI"],
-  },
-  {
-    client: "Solean",
-    problem: "A wellness brand that needed one coherent identity across every touchpoint.",
-    answer: "A brand system — positioning, identity, and the rules for applying it — so every touchpoint reads as the same company.",
-    tags: ["Brand identity"],
-  },
-  {
-    client: "Galaxy Racer",
-    problem: "A fast-moving esports and entertainment brand that needed a consistent creative direction.",
-    answer: "Art direction across campaigns and brand output, so volume didn't dilute the identity.",
-    tags: ["Art direction", "Brand"],
-  },
-];
-
-export const ventures = [
-  {
-    name: "WorkWiz",
-    role: "Founder / Builder",
-    body: "Agency and client-management SaaS — CRM, projects, proposals, and billing. Built full-stack, with Stripe billing and a multi-tenant architecture.",
-  },
-  {
-    name: "Eventafy",
-    role: "Co-founder",
-    body: "Event-management platform, built with a technical co-founder.",
-  },
-];
-
-export const udl = {
-  headline: "Not just how I work — how I think.",
-  body: [
-    "The systems thinking behind my work isn't a trick. It's a discipline I've spent years refining — enough that I built UDL, a community where designers learn to think in systems and stay ahead of AI instead of being replaced by it.",
-    "When you work with me, you're not getting someone who just does the work. You're getting someone who has studied why it works deeply enough to teach it.",
-  ],
-  facts: [
-    { value: "25", label: "Learning spaces" },
-    { value: "800+", label: "Curated resources" },
-  ],
-  href: "https://udl.qurany.me",
-};
-
-export const clients = [
-  "IT-RANKS",
-  "Sajilni",
-  "appetito",
-  "Galaxy Racer",
-  "Solean",
-  "GOSHEN",
-  "Digital Mind",
-  "Eventafy",
 ];
 
 export const finalCta = {

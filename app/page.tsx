@@ -2,35 +2,38 @@ import {
   Clients,
   Edge,
   Experience,
-  FinalCta,
+  Footer,
   Hero,
   Problem,
-  Process,
+  ProcessPanels,
   Udl,
   Work,
-} from "@/components/sections";
-import { SiteFooter, SiteHeader } from "@/components/ui";
+} from "@/components/home";
+import { TopBar } from "@/components/TopBar";
 
-// Section order follows the trust sequence: see → believe → be impressed → act.
+// Section order follows the "Qurany Glass website" Figma frame; Experience and
+// the footer fill the space the frame leaves after the client logos.
 export default function Home() {
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:p-3 focus:text-paper">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-16 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-maroon"
+      >
         Skip to content
       </a>
-      <SiteHeader />
+      <TopBar />
       <main id="main">
         <Hero />
         <Problem />
-        <Process />
+        <ProcessPanels />
         <Edge />
-        <Experience />
         <Work />
         <Udl />
         <Clients />
-        <FinalCta />
+        <Experience />
       </main>
-      <SiteFooter />
+      <Footer />
     </>
   );
 }

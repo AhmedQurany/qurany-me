@@ -15,19 +15,19 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "#F7F4EF",
-          color: "#171411",
+          background: "#3A1015",
+          color: "#F9FAFB",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, color: "#5E5852" }}>
+        <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, color: "#C4CDD5" }}>
           AHMED QURANY — CREATIVE EXPERIENCE ARCHITECT
         </div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 76, fontWeight: 700, lineHeight: 1.02, letterSpacing: -3 }}>
           <span>One designer who sees the whole system —</span>
-          <span style={{ color: "#B5482E" }}>strategy, interface, and build.</span>
+          <span style={{ color: "#BF4447" }}>strategy, interface, and build.</span>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#5E5852", borderTop: "2px solid #171411", paddingTop: 24 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#C4CDD5", borderTop: "2px solid rgba(255,255,255,0.2)", paddingTop: 24 }}>
           <span>11+ years · 500+ projects</span>
           <span>qurany.me</span>
         </div>

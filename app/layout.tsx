@@ -1,21 +1,36 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Inter_Tight } from "next/font/google";
+import { Outfit, Syne } from "next/font/google";
 import { contact, experience, socials } from "@/content/profile";
+import { hasPublic } from "@/lib/assets";
 import "./globals.css";
 
-const sans = Inter_Tight({
+// Lufga (the Figma typeface) is a licensed font. Drop Lufga-Regular.woff2 and
+// Lufga-Medium.woff2 into public/fonts and it is picked up; until then Outfit,
+// the closest free geometric sans, stands in.
+const fallback = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
+  weight: ["400", "500"],
+  variable: "--font-fallback",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
+const syne = Syne({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+  weight: ["500", "700"],
+  variable: "--font-syne",
   display: "swap",
 });
+
+const lufgaFaces = [
+  { file: "/fonts/Lufga-Regular.woff2", weight: 400 },
+  { file: "/fonts/Lufga-Medium.woff2", weight: 500 },
+]
+  .filter((f) => hasPublic(f.file))
+  .map(
+    (f) =>
+      `@font-face{font-family:"Lufga";src:url("${f.file}") format("woff2");font-weight:${f.weight};font-style:normal;font-display:swap}`,
+  )
+  .join("");
 
 const title = "Ahmed Qurany — Creative Experience Architect";
 const description =
@@ -48,10 +63,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F4EF" },
-    { media: "(prefers-color-scheme: dark)", color: "#12100E" },
-  ],
+  themeColor: "#3A1015",
 };
 
 const current = experience.find((r) => r.end === "Present" && r.company !== "Qurany Studio");
@@ -71,7 +83,8 @@ const personSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${fallback.variable} ${syne.variable}`}>
+      <head>{lufgaFaces ? <style dangerouslySetInnerHTML={{ __html: lufgaFaces }} /> : null}</head>
       <body>
         <script
           type="application/ld+json"

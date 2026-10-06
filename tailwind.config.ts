@@ -1,32 +1,39 @@
 import type { Config } from "tailwindcss";
 
+// Tokens from the "Qurany Glass website" Figma file.
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        paper: "rgb(var(--paper) / <alpha-value>)",
-        sheet: "rgb(var(--sheet) / <alpha-value>)",
-        ink: "rgb(var(--ink) / <alpha-value>)",
-        muted: "rgb(var(--muted) / <alpha-value>)",
-        faint: "rgb(var(--faint) / <alpha-value>)",
-        line: "rgb(var(--line) / <alpha-value>)",
-        clay: "rgb(var(--clay) / <alpha-value>)",
-        "clay-soft": "rgb(var(--clay-soft) / <alpha-value>)",
+        maroon: "#3A1015",
+        red: "#BF4447",
+        card: "#161616",
+        grey: {
+          100: "#F9FAFB",
+          200: "#F4F6F8",
+          400: "#C4CDD5",
+          500: "#919EAB",
+          600: "#637381",
+          900: "#161C24",
+        },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        sans: ["Lufga", "var(--font-fallback)", "system-ui", "sans-serif"],
+        syne: ["var(--font-syne)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        display: ["clamp(40px, 6.4vw, 96px)", { lineHeight: "0.98", letterSpacing: "-0.04em" }],
-        h2: ["clamp(32px, 4.2vw, 60px)", { lineHeight: "1.02", letterSpacing: "-0.035em" }],
-        h3: ["clamp(22px, 2vw, 28px)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
-        lead: ["clamp(18px, 1.5vw, 21px)", { lineHeight: "1.5" }],
-        label: ["11px", { lineHeight: "1.4", letterSpacing: "0.16em" }],
+        // Figma sizes, fluid below desktop.
+        hero: ["clamp(40px, 4.4vw, 64px)", { lineHeight: "1.12", letterSpacing: "-0.01em" }],
+        h2: ["clamp(30px, 3vw, 44px)", { lineHeight: "1.2" }],
+        kicker: ["clamp(26px, 3vw, 44px)", { lineHeight: "1.3" }],
+        lead: ["clamp(17px, 1.3vw, 20px)", { lineHeight: "1.3" }],
       },
       maxWidth: {
-        page: "1320px",
+        page: "1264px",
+      },
+      borderRadius: {
+        pill: "80px",
       },
     },
   },
