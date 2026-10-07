@@ -1,29 +1,37 @@
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
-import { Preloader } from "@/components/Preloader";
-import { Hero } from "@/components/sections/Hero";
-import { ServicesSection } from "@/components/sections/ServicesSection";
-import { Problem } from "@/components/sections/Problem";
-import { Method } from "@/components/sections/Method";
-import { CinematicWork } from "@/components/sections/CinematicWork";
-import { Numbers } from "@/components/sections/Numbers";
-import { ManifestoTeaser } from "@/components/sections/ManifestoTeaser";
-import { CtaSection } from "@/components/sections/CtaSection";
+import {
+  Clients,
+  Edge,
+  Experience,
+  Footer,
+  Hero,
+  Problem,
+  ProcessPanels,
+  Udl,
+  Work,
+} from "@/components/home";
+import { TopBar } from "@/components/TopBar";
 
-export default function HomePage() {
+// Section order follows the "Qurany Glass website" Figma frame; Experience and
+// the footer fill the space the frame leaves after the client logos.
+export default function Home() {
   return (
     <>
-      <Preloader />
-      <Nav />
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-16 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-maroon"
+      >
+        Skip to content
+      </a>
+      <TopBar />
       <main id="main">
         <Hero />
-        <ServicesSection />
         <Problem />
-        <Method />
-        <Numbers />
-        <CinematicWork />
-        <ManifestoTeaser />
-        <CtaSection />
+        <ProcessPanels />
+        <Edge />
+        <Work />
+        <Udl />
+        <Clients />
+        <Experience />
       </main>
       <Footer />
     </>

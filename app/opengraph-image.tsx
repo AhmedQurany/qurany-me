@@ -1,0 +1,38 @@
+import { ImageResponse } from "next/og";
+
+export const alt = "Ahmed Qurany — Creative Experience Architect";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+export default function OpengraphImage() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: 72,
+          background: "#3A1015",
+          color: "#F9FAFB",
+          fontFamily: "sans-serif",
+        }}
+      >
+        <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, color: "#C4CDD5" }}>
+          AHMED QURANY — CREATIVE EXPERIENCE ARCHITECT
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", fontSize: 76, fontWeight: 700, lineHeight: 1.02, letterSpacing: -3 }}>
+          <span>One designer who sees the whole system —</span>
+          <span style={{ color: "#BF4447" }}>strategy, interface, and build.</span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#C4CDD5", borderTop: "2px solid rgba(255,255,255,0.2)", paddingTop: 24 }}>
+          <span>11+ years · 500+ projects</span>
+          <span>qurany.me</span>
+        </div>
+      </div>
+    ),
+    size,
+  );
+}

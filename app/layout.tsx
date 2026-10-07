@@ -1,158 +1,96 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Archivo,
-  JetBrains_Mono,
-  Noto_Kufi_Arabic,
-  Cormorant_Garamond,
-} from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
-import { dirOf, isLocale, DEFAULT_LOCALE } from "@/i18n/config";
-import { ThemeProviderClient } from "./providers";
+import { Outfit, Syne } from "next/font/google";
+import { contact, experience, socials } from "@/content/profile";
+import { hasPublic } from "@/lib/assets";
 import "./globals.css";
 
-const archivo = Archivo({
+// Lufga (the Figma typeface) is a licensed font. Drop Lufga-Regular.woff2 and
+// Lufga-Medium.woff2 into public/fonts and it is picked up; until then Outfit,
+// the closest free geometric sans, stands in.
+const fallback = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-archivo",
+  weight: ["400", "500"],
+  variable: "--font-fallback",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const syne = Syne({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-jetbrains-mono",
+  weight: ["500", "700"],
+  variable: "--font-syne",
   display: "swap",
 });
 
-const notoKufi = Noto_Kufi_Arabic({
-  subsets: ["arabic"],
-  weight: ["400", "500", "700", "800"],
-  variable: "--font-noto-kufi-arabic",
-  display: "swap",
-});
+const lufgaFaces = [
+  { file: "/fonts/Lufga-Regular.woff2", weight: 400 },
+  { file: "/fonts/Lufga-Medium.woff2", weight: 500 },
+]
+  .filter((f) => hasPublic(f.file))
+  .map(
+    (f) =>
+      `@font-face{font-family:"Lufga";src:url("${f.file}") format("woff2");font-weight:${f.weight};font-style:normal;font-display:swap}`,
+  )
+  .join("");
 
-// Serif for the Numbers section editorial overlay
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
+const title = "Ahmed Qurany — Creative Experience Architect";
+const description =
+  "One designer who sees the whole system — strategy, interface, and build. 11+ years, 500+ projects across brand, product, and design systems. Based in Cairo.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://qurany.me"),
-  title: {
-    default:
-      "Ahmed Qurany — Ultimate Designer | Senior Product Designer & Brand Strategist",
-    template: "%s · Ahmed Qurany",
-  },
-  description:
-    "Senior Product Designer & Brand Strategist. 11 years. 500+ projects. For founders who refuse to settle for execution-only design.",
-  applicationName: "qurany.me",
+  title: { default: title, template: "%s · Ahmed Qurany" },
+  description,
   authors: [{ name: "Ahmed Qurany" }],
   creator: "Ahmed Qurany",
   keywords: [
     "Ahmed Qurany",
-    "Ultimate Designer",
-    "Product Designer",
-    "Brand Strategist",
+    "Creative Experience Architect",
     "Design Systems",
-    "UX Designer",
-    "Cairo Designer",
-    "Founder Designer",
+    "Product Designer",
+    "Brand Strategy",
+    "UX/UI",
+    "Cairo",
   ],
   openGraph: {
     type: "website",
-    locale: "en_US",
     url: "https://qurany.me",
-    title:
-      "Ahmed Qurany — Ultimate Designer | Senior Product Designer & Brand Strategist",
-    description:
-      "Senior Product Designer & Brand Strategist. 11 years. 500+ projects.",
     siteName: "qurany.me",
-    images: [
-      {
-        url: "/images/archetype-magician.png",
-        width: 1200,
-        height: 630,
-        alt: "Ahmed Qurany — Ultimate Designer",
-      },
-    ],
+    title,
+    description,
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Ahmed Qurany — Ultimate Designer",
-    description:
-      "Senior Product Designer & Brand Strategist. 11 years. 500+ projects.",
-    images: ["/images/archetype-magician.png"],
-  },
+  twitter: { card: "summary_large_image", title, description },
   robots: { index: true, follow: true },
-  icons: {
-    icon: "/favicon.svg",
-  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
-  width: "device-width",
-  initialScale: 1,
+  themeColor: "#3A1015",
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const rawLocale = await getLocale();
-  const locale = isLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
-  const messages = await getMessages();
-  const dir = dirOf(locale);
+const current = experience.find((r) => r.end === "Present" && r.company !== "Qurany Studio");
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ahmed Qurany",
+  url: "https://qurany.me",
+  jobTitle: current?.role,
+  worksFor: current ? { "@type": "Organization", name: current.company } : undefined,
+  address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" },
+  email: `mailto:${contact.email}`,
+  sameAs: socials.map((s) => s.href),
+  alumniOf: { "@type": "CollegeOrUniversity", name: "New Cairo Academy" },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang={locale}
-      dir={dir}
-      suppressHydrationWarning
-      className={`${archivo.variable} ${jetbrainsMono.variable} ${notoKufi.variable} ${cormorant.variable}`}
-    >
-      <head>
-        {/* Adobe Fonts (Typekit) — macula-line for the Clients title */}
-        <link
-          rel="preconnect"
-          href="https://use.typekit.net"
-          crossOrigin="anonymous"
-        />
-        <link rel="stylesheet" href="https://use.typekit.net/yxf3ioc.css" />
-      </head>
-      <body className={locale === "ar" ? "font-arabic" : "font-sans"}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProviderClient>{children}</ThemeProviderClient>
-        </NextIntlClientProvider>
-
-        {/* Schema.org Person */}
+    <html lang="en" className={`${fallback.variable} ${syne.variable}`}>
+      <head>{lufgaFaces ? <style dangerouslySetInnerHTML={{ __html: lufgaFaces }} /> : null}</head>
+      <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Ahmed Qurany",
-              jobTitle: "Senior Product Designer & Brand Strategist",
-              description:
-                "Ultimate Designer. 11 years, 500+ projects shipped.",
-              url: "https://qurany.me",
-              sameAs: [
-                "https://www.linkedin.com/in/ahmedqurany",
-                "https://www.behance.net/ahmedqurany",
-                "https://www.instagram.com/ahmedqurany",
-              ],
-              address: { "@type": "PostalAddress", addressLocality: "Cairo" },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        {children}
       </body>
     </html>
   );
