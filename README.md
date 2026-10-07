@@ -12,6 +12,7 @@ npm install
 npm run dev        # http://localhost:3000
 npm run build      # production build
 npm run lint && npm run typecheck
+npm run export     # plain HTML site in out/ for any static host
 ```
 
 ## Where things live
