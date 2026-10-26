@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     siteName: "qurany.me",
     images: [
       {
-        url: "/images/archetype-magician.png",
+        url: "/images/archetype-magician.jpg",
         width: 1200,
         height: 630,
         alt: "Ahmed Qurany — Ultimate Designer",
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     title: "Ahmed Qurany — Ultimate Designer",
     description:
       "Senior Product Designer & Brand Strategist. 11 years. 500+ projects.",
-    images: ["/images/archetype-magician.png"],
+    images: ["/images/archetype-magician.jpg"],
   },
   robots: { index: true, follow: true },
   icons: {

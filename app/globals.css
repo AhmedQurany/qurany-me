@@ -33,12 +33,28 @@
   }
 
   body {
+    /* Ambient color wash — a faint archetype-tinted gradient so the Liquid
+       Glass surfaces have something warm/cool to refract through. The base
+       black still dominates; the tint is intentionally subtle. */
     background-color: rgb(var(--bg));
+    background-image:
+      radial-gradient(
+        ellipse at 50% 0%,
+        rgba(var(--archetype-color-rgb) / 0.12) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 85% 100%,
+        rgba(var(--archetype-color-rgb) / 0.08) 0%,
+        transparent 60%
+      );
+    background-attachment: fixed;
     color: rgb(var(--text-primary));
     font-family: var(--font-archivo), system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
     overflow-x: hidden;
     min-height: 100vh;
+    transition: background-image 600ms ease;
   }
 
   /* Film grain overlay — fixed, sits above content, beneath transitions/cursor.
@@ -568,69 +584,162 @@
     color: rgb(var(--text-secondary));
   }
 
+  /* =========================================================================
+     LIQUID GLASS — site-wide visual language
+     -------------------------------------------------------------------------
+     Apple-style frosted glass: translucent surface with backdrop blur, a
+     specular top highlight (the "wet" inner edge), a soft outer shadow, and
+     saturate to pull color through from behind. Three surface intensities
+     (regular / strong / tinted) cover most needs. Every elevated surface in
+     the app reuses these — buttons, cards, nav, modals, badges, etc.
+     ========================================================================= */
+  .lg-glass {
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      /* outer soft drop */
+      0 8px 32px rgba(0, 0, 0, 0.45),
+      /* inner top specular highlight */
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      /* inner bottom faint refraction line */
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  }
+  .lg-glass-strong {
+    background: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+  /* Tinted glass — picks up the active archetype color. */
+  .lg-glass-tint {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--archetype-color-rgb) / 0.35) 0%,
+        rgba(var(--archetype-color-rgb) / 0.18) 100%
+      );
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border: 1px solid rgba(var(--archetype-color-rgb) / 0.5);
+    box-shadow:
+      0 10px 36px rgba(var(--archetype-color-rgb) / 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Pill shape — capsule corners for buttons/chips. */
+  .lg-pill {
+    border-radius: 9999px;
+  }
+
+  /* Buttons — Liquid Glass capsules. */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: var(--archetype-color);
-    color: #0a0a0a;
+    color: rgb(var(--text-primary));
     padding: 14px 28px;
-    border: 1px solid var(--archetype-color);
     font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    border-radius: 2px;
-    transition: transform 200ms ease, box-shadow 200ms ease,
-      background-color 200ms ease;
+    border-radius: 9999px;
+    /* lg-glass-tint inlined so the class doesn't need to be composed */
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--archetype-color-rgb) / 0.45) 0%,
+        rgba(var(--archetype-color-rgb) / 0.22) 100%
+      );
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border: 1px solid rgba(var(--archetype-color-rgb) / 0.55);
+    box-shadow:
+      0 10px 36px rgba(var(--archetype-color-rgb) / 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    transition: transform 220ms ease, box-shadow 220ms ease,
+      background 220ms ease, border-color 220ms ease;
     cursor: pointer;
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px -8px var(--archetype-color);
+    box-shadow:
+      0 14px 46px rgba(var(--archetype-color-rgb) / 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.06);
   }
 
   .btn-ghost {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: transparent;
     color: rgb(var(--text-primary));
     padding: 14px 28px;
-    border: 1px solid rgb(var(--border));
     font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    border-radius: 2px;
-    transition: background-color 200ms ease, color 200ms ease,
-      transform 200ms ease;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    transition: transform 220ms ease, background 220ms ease,
+      border-color 220ms ease;
     cursor: pointer;
   }
   .btn-ghost:hover {
-    background-color: rgb(var(--text-primary));
-    color: rgb(var(--bg));
     transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.24);
   }
 
+  /* Surface cards — Liquid Glass panels with generous rounding. */
   .card-surface {
-    background-color: rgb(var(--surface));
-    border: 1px solid rgb(var(--border));
-    border-radius: 2px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
     padding: 32px;
+    box-shadow:
+      0 10px 32px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
   }
 
   .hairline {
-    border-top: 1px solid rgb(var(--border));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  /* Legacy class — kept as alias of lg-glass so existing call sites pick up
+     the new Liquid Glass spec automatically. */
   .glass-card {
-    background: rgba(10, 10, 10, 0.55);
-    backdrop-filter: blur(12px) saturate(140%);
-    -webkit-backdrop-filter: blur(12px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    box-shadow:
+      0 10px 36px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04);
   }
 }
 

@@ -28,7 +28,7 @@ export const ARCHETYPES: Archetype[] = [
     roleWord: "Brands that feel inevitable.",
     color: "#FF6B9D",
     colorRgb: "255 107 157",
-    image: "/images/archetype-magician.png",
+    image: "/images/archetype-magician.jpg",
     card: "/images/cards/card-magician.png",
     subtitle:
       "I shape perception. Brands become unforgettable not because they look right — but because they feel inevitable.",
@@ -41,7 +41,7 @@ export const ARCHETYPES: Archetype[] = [
     roleWord: "Systems that survive scale.",
     color: "#00F0FF",
     colorRgb: "0 240 255",
-    image: "/images/archetype-architect.png",
+    image: "/images/archetype-architect.jpg",
     card: "/images/cards/card-architect.png",
     subtitle:
       "I build design systems that survive growth — not pretty token libraries, but living infrastructure teams actually use.",
@@ -54,7 +54,7 @@ export const ARCHETYPES: Archetype[] = [
     roleWord: "Paths users actually walk.",
     color: "#00C896",
     colorRgb: "0 200 150",
-    image: "/images/archetype-navigator.png",
+    image: "/images/archetype-navigator.jpg",
     card: "/images/cards/card-navigator.png",
     subtitle:
       "I chart the path users walk before they know they're walking. Flows, screens, decisions — designed end to end.",
@@ -67,7 +67,7 @@ export const ARCHETYPES: Archetype[] = [
     roleWord: "The plan before the pixels.",
     color: "#FF3D33",
     colorRgb: "255 61 51",
-    image: "/images/archetype-strategist.png",
+    image: "/images/archetype-strategist.jpg",
     card: "/images/cards/card-strategist.png",
     subtitle:
       "Before the pixels, the plan. I read the board, find the gap, and design the game you're actually playing.",
@@ -80,7 +80,7 @@ export const ARCHETYPES: Archetype[] = [
     roleWord: "Decks that move rooms.",
     color: "#FFB800",
     colorRgb: "255 184 0",
-    image: "/images/archetype-storyteller.png",
+    image: "/images/archetype-storyteller.jpg",
     card: "/images/cards/card-storyteller.png",
     subtitle:
       "Decks that move rooms, not just slides that fill them. I turn data into arguments people can't ignore.",
@@ -93,7 +93,7 @@ export const ARCHETYPES: Archetype[] = [
     roleWord: "Strategy that ships.",
     color: "#7B5EFF",
     colorRgb: "123 94 255",
-    image: "/images/archetype-builder.png",
+    image: "/images/archetype-builder.jpg",
     card: "/images/cards/card-builder.png",
     subtitle:
       "Strategy means nothing if it doesn't ship. I close the loop — from idea to live site — without handoff loss.",

@@ -35,13 +35,12 @@ export function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border bg-bg/85 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+      className={`sticky top-4 z-50 mx-auto mt-4 w-[min(1400px,calc(100%-32px))] transition-all duration-300 ${
+        scrolled ? "lg-glass-strong" : "lg-glass"
       }`}
+      style={{ borderRadius: 9999 }}
     >
-      <div className="container-x flex h-[68px] items-center">
+      <div className="container-x flex h-[64px] items-center">
         {/* Left — logo */}
         <div className="flex flex-1 items-center">
           <TransitionLink
@@ -94,7 +93,7 @@ export function Nav() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="ml-1 inline-flex h-11 w-11 items-center justify-center border border-border md:hidden"
+            className="lg-glass ml-1 inline-flex h-11 w-11 items-center justify-center rounded-full md:hidden"
             aria-label={open ? t("menuClose") : t("menuOpen")}
             aria-expanded={open}
           >
@@ -105,7 +104,7 @@ export function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-border bg-bg/95 backdrop-blur-md md:hidden">
+        <div className="lg-glass-strong mt-2 overflow-hidden rounded-2xl md:hidden">
           <nav
             className="container-x flex flex-col gap-1 py-6"
             aria-label="Mobile"

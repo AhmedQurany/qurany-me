@@ -28,7 +28,7 @@ export function LocaleToggle() {
     <div
       role="group"
       aria-label={t("localeToggleLabel")}
-      className="inline-flex h-11 items-stretch border border-border"
+      className="lg-glass inline-flex h-11 items-stretch overflow-hidden rounded-full p-1"
     >
       {(["en", "ar"] as Locale[]).map((loc) => {
         const active = safeCurrent === loc;
@@ -39,10 +39,10 @@ export function LocaleToggle() {
             onClick={() => setLocale(loc)}
             disabled={isPending}
             aria-pressed={active}
-            className={`flex w-11 items-center justify-center font-mono text-[11px] uppercase tracking-mono-wide transition-colors ${
+            className={`flex w-10 items-center justify-center rounded-full font-mono text-[11px] uppercase tracking-mono-wide transition-all ${
               active
-                ? "bg-text-primary text-bg"
-                : "text-text-secondary hover:text-text-primary"
+                ? "bg-white/85 text-bg shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
+                : "text-text-secondary hover:bg-white/5 hover:text-text-primary"
             }`}
           >
             {loc}

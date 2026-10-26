@@ -66,6 +66,12 @@ const config: Config = {
         xs: "2px",
         sm: "4px",
         md: "6px",
+        // Liquid Glass scale — generous rounding is part of the look.
+        lg: "14px",
+        xl: "22px",
+        "2xl": "28px",
+        "3xl": "36px",
+        pill: "9999px",
       },
       letterSpacing: {
         tightest: "-0.04em",
